@@ -13,13 +13,19 @@
             <td>Username</td>
             <td>Nama</td>
             <td>ID Level Pengguna</td>
+            <td>Aksi</td>
         </tr>
+        @foreach ($data as $user)
         <tr>
-            <td>{{ $data->user_id }}</td>
-            <td>{{ $data->username }}</td>
-            <td>{{ $data->nama }}</td>
-            <td>{{ $data->level_id }}</td>
+            <td>{{ $user->user_id }}</td>
+            <td>{{ $user->username }}</td>
+            <td>{{ $user->nama }}</td>
+            <td>{{ $user->level_id }}</td>
+            <td>
+                <a href="/user/ubah/{{ $user->user_id }}">Ubah</a> | <a href="/user/hapus/{{ $user->user_id }}">Hapus</a>
+            </td>
         </tr>
+        @endforeach
     </table>
 </body>
 </html>
