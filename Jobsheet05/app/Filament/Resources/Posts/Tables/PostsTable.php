@@ -2,9 +2,6 @@
 
 namespace App\Filament\Resources\Posts\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\ColorColumn;
 use Filament\Tables\Columns\IconColumn;
@@ -20,48 +17,30 @@ class PostsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->label('ID')
-                    ->sortable()
-                    ->toggleable(),
-
                 TextColumn::make('title')
                     ->sortable()
-                    ->searchable()
-                    ->toggleable(),
+                    ->searchable(),
 
                 TextColumn::make('slug')
                     ->sortable()
-                    ->searchable()
-                    ->toggleable(),
+                    ->searchable(),
 
                 TextColumn::make('category.name')
-                    ->label('Category')
                     ->sortable()
-                    ->searchable()
-                    ->toggleable(),
+                    ->searchable(),
 
-                ColorColumn::make('color')
-                    ->toggleable(),
+                ColorColumn::make('color'),
 
                 IconColumn::make('published')
-                    ->boolean()
-                    ->toggleable(),
+                    ->boolean(),
 
                 ImageColumn::make('image')
-                    ->disk('public')
-                    ->toggleable(),
+                    ->disk('public'),
 
                 TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()
-                    ->sortable()
-                    ->searchable()
-                    ->toggleable(),
-
-                TextColumn::make('tags')
-                    ->label('Tags')
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
