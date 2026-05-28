@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Products\Tables;
 
-use Filament\Tables\Table;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class ProductsTable
 {
@@ -12,27 +12,26 @@ class ProductsTable
     {
         return $table
             ->columns([
+                TextColumn::make('name')
+                    ->sortable(),
 
-                TextColumn::make('name'),
+                TextColumn::make('sku')
+                    ->sortable(),
 
-                TextColumn::make('sku'),
+                TextColumn::make('price')
+                    ->sortable(),
 
-                TextColumn::make('price'),
-
-                TextColumn::make('stock'),
+                TextColumn::make('stock')
+                    ->sortable(),
 
                 ImageColumn::make('image')
                     ->disk('public'),
 
                 TextColumn::make('is_active')
+                    ->label('Status')
                     ->badge()
-                    ->formatStateUsing(fn (bool $state): string =>
-                        $state ? 'Active' : 'Inactive'
-                    )
-                    ->color(fn (bool $state): string =>
-                        $state ? 'success' : 'danger'
-                    )
-
+                    ->color(fn ($state) => $state ? 'success' : 'danger')
+                    ->formatStateUsing(fn ($state) => $state ? 'Active' : 'Inactive'),
             ]);
     }
 }
